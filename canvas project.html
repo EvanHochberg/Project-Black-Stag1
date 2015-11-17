@@ -13,11 +13,28 @@
 	  var canvas = document.getElementById('myCanvas');
 	  var context = canvas.getContext('2d');
 	  var imageObj = new Image();
+	  var ga = 0.0;
+	  var timer =  setInterval("fadeIn()", 100);
+	  function fadeIn() {
+	    context.clearRect(0,0,canvas.width, canvas.height);
+		context.globalAlpha = ga;
+	  	imageObj.onload = function() {
+	      context.drawImage(imageObj, 460, 0);
+	    };
 	  
-	  imageObj.onload = function() {
-	    context.drawImage(imageObj, 505, 0);
-	  };
-	  imageObj.src = 'blackStag/blackstag.png';
+	    imageObj.src = 'blackStag/BlackStagClear.png';
+	  
+	    ga = ga + 0.05;
+	    if (ga > 1.0) {
+	      goingUp = false;
+		  clearInterval(timer);
+	    }
+		else if (ga < 0) {
+		  ga = ga - 0.05;
+		  goingUp = false;
+		  clearInterval(timer);
+		}
+      }
     </script>
   </body>
 </html>

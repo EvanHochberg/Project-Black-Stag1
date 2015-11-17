@@ -15,6 +15,8 @@
 	  var imageObj = new Image();
 	  var ga = 0.0;
 	  var timer =  setInterval("fadeIn()", 100);
+	  //var timerTwo = setInterval("fadeIn()", 100);
+	  
 	  function fadeIn() {
 	    context.clearRect(0,0,canvas.width, canvas.height);
 		context.globalAlpha = ga;
@@ -22,7 +24,18 @@
 	      context.drawImage(imageObj, 450, 0);
 	    };
 	  
-	    imageObj.src = 'blackStag/BlackStagClear.png';
+	    imageObj.src = 'blackStag/BlackStagClear2.png';
+		
+        context.font = '30pt Calibri';
+	    context.textAlign = 'center';
+	    context.fillStyle = 'red';
+	    context.fillText('The', 100, 50);
+	    context.fillText('End', 100, 90);
+	    context.fillText('is', 100, 130);
+	    context.fillText('Nigh', 100, 170);
+	    context.fillText('Survival', 100, 250);
+	    context.fillText('is', 100, 290);
+	    context.fillText('Futile', 100, 330);
 	  
 	    ga = ga + 0.05;
 	    if (ga > 1.0) {

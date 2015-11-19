@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+    <title>Black Stag</title>
   </head>
   <body>
     <canvas id = "myCanvas" width = "1010" height = "1052"></canvas>
@@ -16,12 +17,13 @@
 	  var ga = 0.0;
 	  var timer =  setInterval("fadeIn()", 100);
 	  //var timerTwo = setInterval("fadeIn()", 100);
+	  var myText = ['The','End','is','Nigh','Survival','is','Futile','Humanity','is','Doomed'];
 	  
 	  function fadeIn() {
 	    context.clearRect(0,0,canvas.width, canvas.height);
 		context.globalAlpha = ga;
 	  	imageObj.onload = function() {
-	      context.drawImage(imageObj, 450, 0);
+	      context.drawImage(imageObj, canvas.width/2, 0);
 	    };
 	  
 	    imageObj.src = 'blackStag/BlackStagClear2.png';
@@ -29,13 +31,15 @@
         context.font = '30pt Courier New';
 	    context.textAlign = 'center';
 	    context.fillStyle = 'red';
-	    context.fillText('The', 100, 50);
-	    context.fillText('End', 100, 90);
-	    context.fillText('is', 100, 130);
-	    context.fillText('Nigh', 100, 170);
+	    context.fillText('The End', 100, 50);
+	    context.fillText('is', 100, 90);
+	    context.fillText('Nigh', 100, 130);
 	    context.fillText('Survival', 100, 250);
 	    context.fillText('is', 100, 290);
 	    context.fillText('Futile', 100, 330);
+		context.fillText('Humanity', 100, 450);
+		context.fillText('is', 100, 490);
+		context.fillText('Doomed', 100, 530);
 	  
 	    ga = ga + 0.05;
 	    if (ga > 1.0) {
@@ -49,7 +53,10 @@
 		}
       }
 	  
-	 
+	 function resizeCan() {
+	   canvas.width = window.innerWidth;
+	   canvas.height = window.innerHeight;
+	 }
 	  /*context.font = '18pt Calibri';
 	  context.textAlign = 'center';
 	  context.fillStyle = 'red';

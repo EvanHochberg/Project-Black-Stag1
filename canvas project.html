@@ -35,8 +35,7 @@
 		context.globalAlpha = ga;
 	  	context.drawImage(imageObj, canvas.width/2, 0);
 		
-		
-        context.font = '30pt Courier New';
+        /*context.font = '30pt Courier New';
 	    context.textAlign = 'center';
 	    context.fillStyle = 'red';
 	    context.fillText('The End', 100, 50);
@@ -51,31 +50,18 @@
 	  
 	    
         context.beginPath();
-        context.moveTo(488, 38);
-        context.bezierCurveTo(564, 35, 592, 214, 582, 190);
-        context.bezierCurveTo(542, 95, 627, 275, 539, 298);
-        context.bezierCurveTo(487, 288, 499, 398, 553, 366);
-        context.bezierCurveTo(524, 483, 548, 306, 433, 480);
-        context.bezierCurveTo(390, 473, 255 , 515, 209, 451);
-        context.bezierCurveTo(195, 457, 350, 496, 380, 453);
-        /*context.bezierCurveTo(401, 365, 356, 462, 442, 418);
-        context.bezierCurveTo(520, 360, 495, 321, 483, 329);
-        context.bezierCurveTo(482, 356, 492, 322, 445, 354);
-        context.bezierCurveTo(535, 262, 447, 246, 453, 314);
-        context.bezierCurveTo(424, 299, 450, 271, 436, 277);
-        context.bezierCurveTo(422, 283, 494, 243, 487, 256);*/
-        context.bezierCurveTo(480, 269, 593, 275, 471, 227);
-        context.bezierCurveTo(521, 209, 556, 258, 553, 230);
-        context.bezierCurveTo(581, 145, 525, 161, 514, 172);
-        context.bezierCurveTo(503, 183, 540, 116, 542, 144);
-        context.bezierCurveTo(563, 121, 513, 22, 521 , 122);
-        context.bezierCurveTo(517, 140, 492, 22, 486 , 36);
+        context.moveTo(289, 13);
+        context.bezierCurveTo(292, 9, 348, 79, 335, 66);
+        context.bezierCurveTo(278, 7, 288, 43, 302, 92);
+        context.bezierCurveTo(306, 106, 274, 74, 278, 69);
+        context.bezierCurveTo(277, 84, 299, 47, 258, 47);
         
-	   
 	    context.closePath();
 	    context.lineWidth = 2;
 	    context.strokeStyle = 'red';
-	    context.stroke();
+	    context.stroke();*/
+		drawShape();
+		
 		
 		ga += gd;
 		if (ga <= 0.1 || ga >= 1) {
@@ -93,7 +79,34 @@
 		ga += gd;*/
       }
 	  
+	 function drawShape() {
+	    context.font = '30pt Courier New';
+	    context.textAlign = 'center';
+	    context.fillStyle = 'red';
+	    context.fillText('The End', 100, 50);
+	    context.fillText('is', 100, 90);
+	    context.fillText('Nigh', 100, 130);
+	    context.fillText('Survival', 100, 250);
+	    context.fillText('is', 100, 290);
+	    context.fillText('Futile', 100, 330);
+		context.fillText('Humanity', 100, 450);
+		context.fillText('is', 100, 490);
+		context.fillText('Doomed', 100, 530);
 	  
+	    
+        context.beginPath();
+        context.moveTo(289, 13);
+        context.bezierCurveTo(292, 9, 348, 79, 335, 66);
+        context.bezierCurveTo(278, 7, 288, 43, 302, 92);
+        context.bezierCurveTo(306, 106, 274, 74, 278, 69);
+        context.bezierCurveTo(277, 84, 299, 47, 258, 47);
+        
+	    context.closePath();
+	    context.lineWidth = 2;
+	    context.strokeStyle = 'red';
+	    context.stroke();
+	 }
+	 
 	 function resizeCan() {
 	   canvas.width = window.innerWidth;
 	   canvas.height = window.innerHeight;

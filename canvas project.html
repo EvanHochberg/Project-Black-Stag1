@@ -35,34 +35,12 @@
 		context.globalAlpha = ga;
 	  	context.drawImage(imageObj, canvas.width/2, 0);
 		
-        /*context.font = '30pt Courier New';
-	    context.textAlign = 'center';
-	    context.fillStyle = 'red';
-	    context.fillText('The End', 100, 50);
-	    context.fillText('is', 100, 90);
-	    context.fillText('Nigh', 100, 130);
-	    context.fillText('Survival', 100, 250);
-	    context.fillText('is', 100, 290);
-	    context.fillText('Futile', 100, 330);
-		context.fillText('Humanity', 100, 450);
-		context.fillText('is', 100, 490);
-		context.fillText('Doomed', 100, 530);
-	  
-	    
-        context.beginPath();
-        context.moveTo(289, 13);
-        context.bezierCurveTo(292, 9, 348, 79, 335, 66);
-        context.bezierCurveTo(278, 7, 288, 43, 302, 92);
-        context.bezierCurveTo(306, 106, 274, 74, 278, 69);
-        context.bezierCurveTo(277, 84, 299, 47, 258, 47);
-        
-	    context.closePath();
-	    context.lineWidth = 2;
-	    context.strokeStyle = 'red';
-	    context.stroke();*/
+		printText();
 		drawShape();
-		
-		
+		drawNotherShape();
+		anotherShape();
+		drawNewShape();
+		lastShape();
 		ga += gd;
 		if (ga <= 0.1 || ga >= 1) {
 		  gd = -gd;
@@ -80,20 +58,6 @@
       }
 	  
 	 function drawShape() {
-	    context.font = '30pt Courier New';
-	    context.textAlign = 'center';
-	    context.fillStyle = 'red';
-	    context.fillText('The End', 100, 50);
-	    context.fillText('is', 100, 90);
-	    context.fillText('Nigh', 100, 130);
-	    context.fillText('Survival', 100, 250);
-	    context.fillText('is', 100, 290);
-	    context.fillText('Futile', 100, 330);
-		context.fillText('Humanity', 100, 450);
-		context.fillText('is', 100, 490);
-		context.fillText('Doomed', 100, 530);
-	  
-	    
         context.beginPath();
         context.moveTo(289, 13);
         context.bezierCurveTo(292, 9, 348, 79, 335, 66);
@@ -105,6 +69,99 @@
 	    context.lineWidth = 2;
 	    context.strokeStyle = 'red';
 	    context.stroke();
+		
+	 }
+	 
+	  function lastShape() {
+     context.beginPath();
+     context.moveTo(392, 115);
+     context.bezierCurveTo(388, 101, 419, 134, 426, 148);
+     context.bezierCurveTo(433, 161, 426, 217, 425, 202);
+     context.bezierCurveTo(424, 187, 426, 258, 422, 244);
+     context.bezierCurveTo(418, 230, 445, 308, 437, 295);
+     context.bezierCurveTo(429, 282, 431, 347, 425, 333);
+     context.bezierCurveTo(419, 319, 428, 381, 398, 375);
+     context.bezierCurveTo(383, 372, 428, 424, 417, 413);
+     context.bezierCurveTo(386, 382, 387, 417, 377, 427);
+     context.bezierCurveTo(366, 438, 366, 461, 354, 470);
+     context.bezierCurveTo(342, 479, 391, 401, 334, 455);
+     context.bezierCurveTo(323, 465, 401, 370, 372, 388);
+     context.bezierCurveTo(357, 397, 395, 356, 404, 344);
+     context.bezierCurveTo(426, 316, 404, 279, 399, 293);
+     context.bezierCurveTo(394, 307, 404, 236, 392, 254);
+     context.bezierCurveTo(384, 266, 436, 210, 391, 223);
+     context.bezierCurveTo(364, 231, 422, 196, 420, 211);
+     context.bezierCurveTo(418, 226, 406, 172, 395, 182);
+     context.bezierCurveTo(384, 192, 406, 156, 395, 165);
+     context.bezierCurveTo(383, 174, 424, 142, 418, 156);
+     context.bezierCurveTo(412, 170, 397, 99, 391, 113);
+     context.stroke();
+	 
+	 context.closePath();
+	 context.lineWidth = 2;
+	 context.strokeStyle = 'red';
+	 context.stroke;
+     }
+	 
+	 function drawNotherShape() {
+	   context.beginPath();
+       context.moveTo(242, 165);
+       context.bezierCurveTo(223, 125, 192, 237, 240, 213);
+       context.bezierCurveTo(240, 213, 257, 177, 270, 232);
+       context.bezierCurveTo(276, 258, 274, 198, 285, 204);
+       context.bezierCurveTo(311, 218, 246, 99, 243, 166);
+       context.stroke();
+		 
+	   context.closePath();
+	   context.lineWidth = 5;
+	   context.strokeStlye = 'red';
+	   context.stroke;
+         		 
+	 }
+	 
+	 function anotherShape() {
+	   context.beginPath();
+       context.moveTo(258, 316);
+       context.bezierCurveTo(282, 286, 319, 264, 325, 275);
+       context.bezierCurveTo(332, 288, 323, 318, 325, 320);
+       context.bezierCurveTo(326, 321, 304, 277, 292, 292);
+       context.stroke();
+	   
+	   context.closePath();
+	   context.lineWidth = 4;
+	   context.strokeStlye = 'red';
+	   context.stroke;
+	 }
+	 
+	 function drawNewShape() {
+     context.beginPath();
+     context.moveTo(240, 368);
+     context.bezierCurveTo(225, 368, 363, 440, 301, 412);
+     context.bezierCurveTo(279, 402, 270, 421, 279, 433);
+     context.bezierCurveTo(297, 458, 267, 442, 263, 456);
+     context.bezierCurveTo(259, 470, 287, 397, 245, 396);
+     context.stroke();
+	 
+	 context.closePath();
+	 context.lineWidth = 3;
+	 context.strokeStlye = 'red';
+	 context.stroke;
+     }
+	 
+	 
+	 function printText() {
+	   	    context.font = '30pt Courier New';
+	    context.textAlign = 'center';
+	    context.fillStyle = 'red';
+	    context.fillText('The End', 100, 50);
+	    context.fillText('is', 100, 90);
+	    context.fillText('Nigh', 100, 130);
+	    context.fillText('Survival', 100, 250);
+	    context.fillText('is', 100, 290);
+	    context.fillText('Futile', 100, 330);
+		context.fillText('Humanity', 100, 450);
+		context.fillText('is', 100, 490);
+		context.fillText('Doomed', 100, 530);
 	 }
 	 
 	 function resizeCan() {

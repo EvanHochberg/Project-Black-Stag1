@@ -19,10 +19,11 @@
 	  var timer = 0;  
 	  //var timerTwo = setInterval("fadeIn()", 100);
 	  var myText = ['The','End','is','Nigh','Survival','is','Futile','Humanity','is','Doomed'];
+	  //would like to do somthing with this later.
 	  
 	  imageObj.onload = function() {
 	      context.drawImage(imageObj, canvas.width/2, 0);
-		  timer = setInterval("fade()", 200);
+		  timer = setInterval("fade()", 100);
 	    };
 	  
 	    imageObj.src = 'blackStag/BlackStagClear2.png';
@@ -57,12 +58,12 @@
         context.bezierCurveTo(524, 483, 548, 306, 433, 480);
         context.bezierCurveTo(390, 473, 255 , 515, 209, 451);
         context.bezierCurveTo(195, 457, 350, 496, 380, 453);
-        context.bezierCurveTo(401, 365, 356, 462, 442, 418);
+        /*context.bezierCurveTo(401, 365, 356, 462, 442, 418);
         context.bezierCurveTo(520, 360, 495, 321, 483, 329);
         context.bezierCurveTo(482, 356, 492, 322, 445, 354);
         context.bezierCurveTo(535, 262, 447, 246, 453, 314);
         context.bezierCurveTo(424, 299, 450, 271, 436, 277);
-        context.bezierCurveTo(422, 283, 494, 243, 487, 256);
+        context.bezierCurveTo(422, 283, 494, 243, 487, 256);*/
         context.bezierCurveTo(480, 269, 593, 275, 471, 227);
         context.bezierCurveTo(521, 209, 556, 258, 553, 230);
         context.bezierCurveTo(581, 145, 525, 161, 514, 172);

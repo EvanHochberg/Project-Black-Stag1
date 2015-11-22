@@ -4,7 +4,7 @@
     <title>Black Stag</title>
   </head>
   <body>
-    <canvas id = "myCanvas" width = "1010" height = "1052"></canvas>
+    <canvas id = "myCanvas" width = "1020" height = "1052"></canvas>
 	<style>
 	  body {
 	  background: black;
@@ -14,19 +14,26 @@
 	  var canvas = document.getElementById('myCanvas');
 	  var context = canvas.getContext('2d');
 	  var imageObj = new Image();
-	  var ga = 0.0;
-	  var timer =  setInterval("fadeIn()", 100);
+	  var ga = 0.2;
+	  var gd = 0.1;
+	  var timer = 0;  
 	  //var timerTwo = setInterval("fadeIn()", 100);
 	  var myText = ['The','End','is','Nigh','Survival','is','Futile','Humanity','is','Doomed'];
 	  
-	  function fadeIn() {
-	    context.clearRect(0,0,canvas.width, canvas.height);
-		context.globalAlpha = ga;
-	  	imageObj.onload = function() {
+	  imageObj.onload = function() {
 	      context.drawImage(imageObj, canvas.width/2, 0);
+		  timer = setInterval("fade()", 200);
 	    };
 	  
 	    imageObj.src = 'blackStag/BlackStagClear2.png';
+		
+	
+		
+	  function fade() {
+	    context.clearRect(0,0,canvas.width, canvas.height);
+		context.globalAlpha = ga;
+	  	context.drawImage(imageObj, canvas.width/2, 0);
+		
 		
         context.font = '30pt Courier New';
 	    context.textAlign = 'center';
@@ -41,22 +48,56 @@
 		context.fillText('is', 100, 490);
 		context.fillText('Doomed', 100, 530);
 	  
-	    ga = ga + 0.05;
+	    
+        context.beginPath();
+        context.moveTo(488, 38);
+        context.bezierCurveTo(564, 35, 592, 214, 582, 190);
+        context.bezierCurveTo(542, 95, 627, 275, 539, 298);
+        context.bezierCurveTo(487, 288, 499, 398, 553, 366);
+        context.bezierCurveTo(524, 483, 548, 306, 433, 480);
+        context.bezierCurveTo(390, 473, 255 , 515, 209, 451);
+        context.bezierCurveTo(195, 457, 350, 496, 380, 453);
+        context.bezierCurveTo(401, 365, 356, 462, 442, 418);
+        context.bezierCurveTo(520, 360, 495, 321, 483, 329);
+        context.bezierCurveTo(482, 356, 492, 322, 445, 354);
+        context.bezierCurveTo(535, 262, 447, 246, 453, 314);
+        context.bezierCurveTo(424, 299, 450, 271, 436, 277);
+        context.bezierCurveTo(422, 283, 494, 243, 487, 256);
+        context.bezierCurveTo(480, 269, 593, 275, 471, 227);
+        context.bezierCurveTo(521, 209, 556, 258, 553, 230);
+        context.bezierCurveTo(581, 145, 525, 161, 514, 172);
+        context.bezierCurveTo(503, 183, 540, 116, 542, 144);
+        context.bezierCurveTo(563, 121, 513, 22, 521 , 122);
+        context.bezierCurveTo(517, 140, 492, 22, 486 , 36);
+        
+	   
+	    context.closePath();
+	    context.lineWidth = 2;
+	    context.strokeStyle = 'red';
+	    context.stroke();
+		
+		ga += gd;
+		if (ga <= 0.1 || ga >= 1) {
+		  gd = -gd;
+		}
+	   /* ga = gd + 0.05;
 	    if (ga > 1.0) {
-	      goingUp = false;
+	      ga = gd - 0.05;
 		  clearInterval(timer);
 	    }
-		else if (ga < 0) {
-		  ga = ga - 0.05;
-		  goingUp = false;
+		if (ga < 0.0) {
+		  ga = gd + 0.05;
 		  clearInterval(timer);
 		}
+		ga += gd;*/
       }
+	  
 	  
 	 function resizeCan() {
 	   canvas.width = window.innerWidth;
 	   canvas.height = window.innerHeight;
 	 }
+	 
 	  /*context.font = '18pt Calibri';
 	  context.textAlign = 'center';
 	  context.fillStyle = 'red';

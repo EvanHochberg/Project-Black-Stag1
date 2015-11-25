@@ -4,33 +4,55 @@
     <title>Black Stag</title>
   </head>
   <body>
-    <canvas id = "myCanvas" width = "1020" height = "1052"></canvas>
+    <canvas id = "myCanvas" width = "500" height = "500"></canvas>
 	<style>
 	  body {
 	  background: black;
 	  }
 	</style>
     <script>
-	  var canvas = document.getElementById('myCanvas');
-	  var context = canvas.getContext('2d');
-	  var imageObj = new Image();
+	  var canvas;
+	  var context;
 	  var ga = 0.2;
 	  var gd = 0.1;
-	  var timer = 0;  
-	  //var timerTwo = setInterval("fadeIn()", 100);
-	  var myText = ['The','End','is','Nigh','Survival','is','Futile','Humanity','is','Doomed'];
-	  //would like to do somthing with this later.
+	  var timer;  
+	  var timerTwo;
+	  var myText = ['The End','is','Nigh','Survival','is','Futile','Humanity','is','Doomed'];
+	  var imageObj = new Image();
+	  var scribs = [];
+	  var allScridds = ['shapeOne','shapeTwo','shapeThree','shapeFour','shapeFive'];
 	  
-	  imageObj.onload = function() {
+      function Scribbs(x, y, color) {
+	    this.x = x;
+		this.y = y;
+		this.dx = Math.random() * 4-2;
+		this.dy = Math.random() * 4-2;
+		this.color = color;
+		this.shape = allScridds[Math.floor(Math.random() * allScridds.length)];
+	  }	  
+
+	  function init() {
+	    canvas = document.getElementById('myCanvas');
+		context = canvas.getContext('2d');
+		
+		window.addEventListener('resize', resizeCan, false);
+		window.addEventListener('orientationchange', resizeCan, false);
+		resizeCan();
+		
+		canvas.onclick = function(event) {
+		  handleClick(event.clientX, event.clientY);
+		};
+	    
+		imageObj.onload = function() {
 	      context.drawImage(imageObj, canvas.width/2, 0);
-		  timer = setInterval("fade()", 100);
 	    };
-	  
 	    imageObj.src = 'blackStag/BlackStagClear2.png';
 		
-	
-		
-	  function fade() {
+		timer = setInterval("pulse()", 100);
+		timerTwo = setInterval("thNew()", 100);
+	  }
+	  
+	  function pulse() {
 	    context.clearRect(0,0,canvas.width, canvas.height);
 		context.globalAlpha = ga;
 	  	context.drawImage(imageObj, canvas.width/2, 0);
@@ -41,6 +63,7 @@
 		anotherShape();
 		drawNewShape();
 		lastShape();
+		
 		ga += gd;
 		if (ga <= 0.1 || ga >= 1) {
 		  gd = -gd;
@@ -57,7 +80,15 @@
 		ga += gd;*/
       }
 	  
-	 function drawShape() {
+	  function thNew() {
+	    var x = Math.random() * canvas.width;
+		var y = Math.random() * canvas.height;
+		var coloScrib = ['red','green','blue','yellow','orange','purple'];
+		var color = coloScrib[Math.floor(Math.random()*coloScrib.length)]; 
+		scribs.push(new Scribbs(x,y, color));
+	  }
+	  
+	  function drawShape(shapeOne) {
         context.beginPath();
         context.moveTo(289, 13);
         context.bezierCurveTo(292, 9, 348, 79, 335, 66);
@@ -72,38 +103,37 @@
 		
 	 }
 	 
-	  function lastShape() {
-     context.beginPath();
-     context.moveTo(392, 115);
-     context.bezierCurveTo(388, 101, 419, 134, 426, 148);
-     context.bezierCurveTo(433, 161, 426, 217, 425, 202);
-     context.bezierCurveTo(424, 187, 426, 258, 422, 244);
-     context.bezierCurveTo(418, 230, 445, 308, 437, 295);
-     context.bezierCurveTo(429, 282, 431, 347, 425, 333);
-     context.bezierCurveTo(419, 319, 428, 381, 398, 375);
-     context.bezierCurveTo(383, 372, 428, 424, 417, 413);
-     context.bezierCurveTo(386, 382, 387, 417, 377, 427);
-     context.bezierCurveTo(366, 438, 366, 461, 354, 470);
-     context.bezierCurveTo(342, 479, 391, 401, 334, 455);
-     context.bezierCurveTo(323, 465, 401, 370, 372, 388);
-     context.bezierCurveTo(357, 397, 395, 356, 404, 344);
-     context.bezierCurveTo(426, 316, 404, 279, 399, 293);
-     context.bezierCurveTo(394, 307, 404, 236, 392, 254);
-     context.bezierCurveTo(384, 266, 436, 210, 391, 223);
-     context.bezierCurveTo(364, 231, 422, 196, 420, 211);
-     context.bezierCurveTo(418, 226, 406, 172, 395, 182);
-     context.bezierCurveTo(384, 192, 406, 156, 395, 165);
-     context.bezierCurveTo(383, 174, 424, 142, 418, 156);
-     context.bezierCurveTo(412, 170, 397, 99, 391, 113);
-     context.stroke();
+	  function lastShape(shapeFive) {
+        context.beginPath();
+        context.moveTo(392, 115);
+        context.bezierCurveTo(388, 101, 419, 134, 426, 148);
+        context.bezierCurveTo(424, 187, 426, 258, 422, 244);
+        context.bezierCurveTo(418, 230, 445, 308, 437, 295);
+        context.bezierCurveTo(429, 282, 431, 347, 425, 333);
+        context.bezierCurveTo(419, 319, 428, 381, 398, 375);
+        context.bezierCurveTo(383, 372, 428, 424, 417, 413);
+        context.bezierCurveTo(386, 382, 387, 417, 377, 427);
+        context.bezierCurveTo(366, 438, 366, 461, 354, 470);
+        context.bezierCurveTo(342, 479, 391, 401, 334, 455);
+        context.bezierCurveTo(323, 465, 401, 370, 372, 388);
+        context.bezierCurveTo(357, 397, 395, 356, 404, 344);
+        context.bezierCurveTo(426, 316, 404, 279, 399, 293);
+        context.bezierCurveTo(394, 307, 404, 236, 392, 254);
+        context.bezierCurveTo(384, 266, 436, 210, 391, 223);
+        context.bezierCurveTo(364, 231, 422, 196, 420, 211);
+        context.bezierCurveTo(418, 226, 406, 172, 395, 182);
+        context.bezierCurveTo(384, 192, 406, 156, 395, 165);
+        context.bezierCurveTo(383, 174, 424, 142, 418, 156);
+        context.bezierCurveTo(412, 170, 397, 99, 391, 113);
+        context.stroke();
 	 
-	 context.closePath();
-	 context.lineWidth = 2;
-	 context.strokeStyle = 'red';
-	 context.stroke;
-     }
+	    context.closePath();
+	    context.lineWidth = 2;
+	    context.strokeStyle = 'red';
+	    context.stroke;
+      }
 	 
-	 function drawNotherShape() {
+	  function drawNotherShape(shapeTwo) {
 	   context.beginPath();
        context.moveTo(242, 165);
        context.bezierCurveTo(223, 125, 192, 237, 240, 213);
@@ -117,9 +147,9 @@
 	   context.strokeStlye = 'red';
 	   context.stroke;
          		 
-	 }
+	  }
 	 
-	 function anotherShape() {
+	 function anotherShape(shapeThree) {
 	   context.beginPath();
        context.moveTo(258, 316);
        context.bezierCurveTo(282, 286, 319, 264, 325, 275);
@@ -133,41 +163,85 @@
 	   context.stroke;
 	 }
 	 
-	 function drawNewShape() {
-     context.beginPath();
-     context.moveTo(240, 368);
-     context.bezierCurveTo(225, 368, 363, 440, 301, 412);
-     context.bezierCurveTo(279, 402, 270, 421, 279, 433);
-     context.bezierCurveTo(297, 458, 267, 442, 263, 456);
-     context.bezierCurveTo(259, 470, 287, 397, 245, 396);
-     context.stroke();
+	  function drawNewShape(shapeFour) {
+        context.beginPath();
+        context.moveTo(240, 368);
+        context.bezierCurveTo(225, 368, 363, 440, 301, 412);
+        context.bezierCurveTo(279, 402, 270, 421, 279, 433);
+        context.bezierCurveTo(297, 458, 267, 442, 263, 456);
+        context.bezierCurveTo(259, 470, 287, 397, 245, 396);
+        context.stroke();
 	 
-	 context.closePath();
-	 context.lineWidth = 3;
-	 context.strokeStlye = 'red';
-	 context.stroke;
-     }
+	    context.closePath();
+	    context.lineWidth = 3;
+	    context.strokeStlye = 'red';
+	    context.stroke;
+      }
 	 
 	 
-	 function printText() {
-	   	    context.font = '30pt Courier New';
+	  function printText() {
+	   	context.font = '30pt Courier New';
 	    context.textAlign = 'center';
 	    context.fillStyle = 'red';
-	    context.fillText('The End', 100, 50);
-	    context.fillText('is', 100, 90);
-	    context.fillText('Nigh', 100, 130);
-	    context.fillText('Survival', 100, 250);
-	    context.fillText('is', 100, 290);
-	    context.fillText('Futile', 100, 330);
-		context.fillText('Humanity', 100, 450);
-		context.fillText('is', 100, 490);
-		context.fillText('Doomed', 100, 530);
-	 }
+	    context.fillText(myText[0], 100, 50);
+	    context.fillText(myText[1], 100, 90);
+	    context.fillText(myText[2], 100, 130);
+	    context.fillText(myText[3], 100, 250);
+	    context.fillText(myText[4], 100, 290);
+	    context.fillText(myText[5], 100, 330);
+		context.fillText(myText[6], 100, 450);
+		context.fillText(myText[7], 100, 490);
+		context.fillText(myText[8], 100, 530);
+		//var txt = new Mytext();
+	  }
 	 
-	 function resizeCan() {
+	 /* function Mytext() {
+	    var x = Math.random() * canvas.width;
+		var y = Math.random() * canvas.height;
+	    this.x = x;
+		this.y = y;
+		this.dx = 7;
+        this.text = myText[Math.floor(Math.random() * myText.length)];		
+	  }*/
+	 
+	  function resizeCan() {
 	   canvas.width = window.innerWidth;
 	   canvas.height = window.innerHeight;
-	 }
+	   fillBackground();
+	   for (var i=0; i <scribs.length; i++) {
+	     if (scribs[i].shape == 'shapeOne') {
+		   drawShape(scribs[i]);
+		 }
+		 else if (scribs[i].shape == 'shapeFive') {
+		   drawNotherShape(scribs[i]);
+		 }
+		 else if (scribs[i].shape == 'shapeThree') {
+		   anotherShape(scribs[i]);
+		 }
+		 else if (scribs[i].shape == 'shapeFour') {
+		   drawNewShape(scribs[i]);
+		 }
+		 else if (scribs[i].shape == 'shapeTwo') {
+		   lastShape(scribs[i]);
+		 }
+		 if (scribs[i].x + scribs[i].dx > canvas.width || scribs[i].x + scribs[i].dx < 0) {
+		   scribs[i].dx = -scribs[i].dx;
+		 }
+		 if (scribs[i].y + scribs[i].dy > canvas.height || scribs[i].y + scribs[i].dy < 0) {
+		   scribs[i].dy = -scribs[i].dy;
+		   scribs[i].x += scribs[i].dx;
+		   scribs[i].y += scribs[i].dy;
+		 }
+	   }
+	  }
+	  
+	 
+	  function fillBackground() {
+	    context.fillStyle = 'black';
+		context.fillRect(0,0, canvas.width, canvas.height);
+	  }
+	  
+	  window.onload = init;
 	 //meow meow this is a test commit.
 	  /*context.font = '18pt Calibri';
 	  context.textAlign = 'center';

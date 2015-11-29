@@ -175,17 +175,13 @@
 		for (var i=0; i<scribble.length; i++) {
 			if (scribble[i].shape == 'gin') {
 				lastShape(scribble[i]);
-			} 
-			else if (scribble[i].shape == 'onner') {
+			} else if (scribble[i].shape == 'onner') {
 				drawShape(scribble[i]);
-			} 
-			else if (scribble[i].shape == 'twin') {
+			} else if (scribble[i].shape == 'twin') {
 				drawNotherShape(scribble[i]);
-			} 
-			else if (scribble[i].shape == 'tree') {
+			} else if (scribble[i].shape == 'tree') {
 				anotherShape(scribble[i]);
-			} 
-			else if (scribble[i].shape == 'dun') {
+			} else if (scribble[i].shape == 'dun') {
 				drawNewShape(scribble[i]);
 			}
 			if (scribble[i].x + scribble[i].dx > canvas.width || scribble[i].x + scribble[i].dx < 0)

@@ -47,7 +47,6 @@
 	    };
 	    imageObj.src = 'blackStag/BlackStagClear2.png';
 		
-
 		timer = setInterval("pulse();", 100);
 		canvas.onclick = function(event) {
 		  handleClick(event.clientX, event.clientY);
@@ -61,19 +60,14 @@
 	  
 	  function handleClick(x,y) {
 	    clearInterval(timer);
-		clearInterval(timerThree);
-		clearInterval(timerTwo);
-	    timerTwo = setInterval("resizeCan();", 100);
-		timerThree = setInterval("newScribb();", 2000);
+		
 		context.globalCompositeOperation = "source-over";
 		cleanUp("black");
 		
-		context.fillStyle = "red";
-        context.font = '30pt Courier New';
-	    context.textAlign = 'center';
-        context.fillText("Your Welcome", 555,555);
-        row1 = 60;
-        row2 = 40;		
+
+        
+		timerTwo = setInterval("resizeCan();", 100);
+		timerThree = setInterval("newScribb();", 2000);	
 	  }
 	  
 	  function pulse() {
@@ -82,11 +76,6 @@
 	  	context.drawImage(imageObj, 555, 0);
 		
 		printText();
-		//drawShape();
-		//drawNotherShape();
-		//anotherShape();
-		//drawNewShape();
-		//lastShape();
 		
 		ga += gd;
 		if (ga <= 0.1 || ga >= 1) {
@@ -190,6 +179,12 @@
         canvas.width = window.innerWidth-20;
         canvas.height = window.innerHeight-20;
 		fillBackgroundColor();
+		
+		context.fillStyle = "red";
+        context.font = '50pt Courier New';
+	    context.textAlign = 'center';
+        context.fillText("Your Welcome", 455,555);
+		
 		for (var i=0; i<scribble.length; i++) {
 			if (scribble[i].shape == 'gin') {
 				lastShape(scribble[i]);

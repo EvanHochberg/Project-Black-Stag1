@@ -21,8 +21,6 @@
 	  var timerTwo = 0;
 	  var timerThree = 0;
 	  var allScribbles = ['tree','twin','gin','onner','dun'];
-	  var row1;
-	  var row2;
 	  function Scribbles(x, y, color) {
 		this.x = x;
 		this.y = y;
@@ -47,39 +45,15 @@
 	    };
 	    imageObj.src = 'blackStag/BlackStagClear2.png';
 		
-
-		timer = setInterval("pulse();", 100);
-		canvas.onclick = function(event) {
-		  handleClick(event.clientX, event.clientY);
-		}
+		timer = setInterval("resizeCan();", 100);
+		timerTwo = setInterval("newScribb();", 2000);
+		timerThree = setInterval("pulse();", 100);
       }
-	  function cleanUp(color) {
-	    context.clearRect(0,0,canvas.width, canvas.height);
-		context.fillStyle = color;
-		context.fillRect(0,0, canvas.width, canvas.height);
-	  }
-	  
-	  function handleClick(x,y) {
-	    clearInterval(timer);
-		clearInterval(timerThree);
-		clearInterval(timerTwo);
-	    timerTwo = setInterval("resizeCan();", 100);
-		timerThree = setInterval("newScribb();", 2000);
-		context.globalCompositeOperation = "source-over";
-		cleanUp("black");
-		
-		context.fillStyle = "red";
-        context.font = '30pt Courier New';
-	    context.textAlign = 'center';
-        context.fillText("Your Welcome", 555,555);
-        row1 = 60;
-        row2 = 40;		
-	  }
 	  
 	  function pulse() {
 	    context.clearRect(0,0,canvas.width, canvas.height);
 		context.globalAlpha = ga;
-	  	context.drawImage(imageObj, 555, 0);
+	  	context.drawImage(imageObj, canvas.width/2, 0);
 		
 		printText();
 		//drawShape();
@@ -178,13 +152,19 @@
 	 }
 	  
 	  function printText() {
-	    var myText = ['The End is Nigh','Survival is Futile','Humanity is Doomed'];
+	    var myText = ['The End','is','Nigh','Survival','is','Futile','Humanity','is','Doomed'];
 	    context.font = '30pt Courier New';
 	    context.textAlign = 'center';
 	    context.fillStyle = 'red';
-	    context.fillText(myText[0], 400, 50);
-	    context.fillText(myText[1], 1100, 50);
-	    context.fillText(myText[2], 775, 720);
+	    context.fillText(myText[0], 200, 50);
+	    context.fillText(myText[1], 200, 90);
+	    context.fillText(myText[2], 200, 130);
+	    context.fillText(myText[3], 400, 250);
+	    context.fillText(myText[4], 400, 290);
+	    context.fillText(myText[5], 400, 330);
+		context.fillText(myText[6], 700, 450);
+		context.fillText(myText[7], 700, 490);
+		context.fillText(myText[8], 700, 530);
 	}
       function resizeCan() {
         canvas.width = window.innerWidth-20;
@@ -202,12 +182,12 @@
 			} else if (scribble[i].shape == 'dun') {
 				drawNewShape(scribble[i]);
 			}
-			/*if (scribble[i].x + scribble[i].dx > canvas.width || scribble[i].x + scribble[i].dx < 0)
+			if (scribble[i].x + scribble[i].dx > canvas.width || scribble[i].x + scribble[i].dx < 0)
 				scribble[i].dx = -scribble[i].dx;
 			if (scribble[i].y + scribble[i].dy > canvas.height || scribble[i].y + scribble[i].dy < 0)
 				scribble[i].dy = -scribble[i].dy;
 				scribble[i].x += scribble[i].dx;
-				scribble[i].y += scribble[i].dy;*/
+				scribble[i].y += scribble[i].dy;
 		}
 				 
       }
@@ -218,4 +198,4 @@
 	  window.onload = init;
     </script>
   </body>	  
-</html
+</html>

@@ -20,6 +20,7 @@
 	  var timer = 0;
 	  var timerTwo = 0;
 	  var timerThree = 0;
+	  var timerFour = 0;
 	  var allScribbles = ['tree','twin','gin','onner','dun'];
 	  var row1;
 	  var row2;
@@ -50,7 +51,8 @@
 		timer = setInterval("pulse();", 100);
 		canvas.onclick = function(event) {
 		  handleClick(event.clientX, event.clientY);
-		}
+		};
+		
       }
 	  function cleanUp(color) {
 	    context.clearRect(0,0,canvas.width, canvas.height);
@@ -77,6 +79,10 @@
 		
 		printText();
 		
+	    context.font = '10pt Courier New';
+	    context.textAlign = 'center';
+	    context.fillStyle = 'red';
+	    context.fillText('Click Once', 1100, 720);
 		ga += gd;
 		if (ga <= 0.1 || ga >= 1) {
 		  gd = -gd;
@@ -179,7 +185,9 @@
         canvas.width = window.innerWidth-20;
         canvas.height = window.innerHeight-20;
 		fillBackgroundColor();
-		
+		canvas.onclick = function(event) {
+		  handleClickTwo(event.clientX, event.clientY);
+		};
 		context.fillStyle = "red";
         context.font = '50pt Courier New';
 	    context.textAlign = 'center';
@@ -206,6 +214,17 @@
 		}
 				 
       }
+	  //get rid of this funtion?
+	  function handleClickTwo(x,y) {
+	  	clearInterval(timerTwo);
+		clearInterval(timerThree);
+
+		context.globalCompositeOperation = "source-over";
+		cleanUp("black");
+		
+
+	  }
+	  
 	  function fillBackgroundColor() {
         context.fillStyle = 'black';
 		context.fillRect(0, 0, canvas.width, canvas.height);

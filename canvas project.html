@@ -24,6 +24,7 @@
 	  var allScribbles = ['tree','twin','gin','onner','dun'];
 	  var row1;
 	  var row2;
+	  var timerFour = 0;
 	  function Scribbles(x, y, color) {
 		this.x = x;
 		this.y = y;
@@ -188,6 +189,12 @@
 		canvas.onclick = function(event) {
 		  handleClickTwo(event.clientX, event.clientY);
 		};
+		
+	    context.font = '10pt Courier New';
+	    context.textAlign = 'center';
+	    context.fillStyle = 'red';
+	    context.fillText('press Q', 1100, 720);
+		
 		context.fillStyle = "red";
         context.font = '50pt Courier New';
 	    context.textAlign = 'center';
@@ -205,12 +212,12 @@
 			} else if (scribble[i].shape == 'dun') {
 				drawNewShape(scribble[i]);
 			}
-			/*if (scribble[i].x + scribble[i].dx > canvas.width || scribble[i].x + scribble[i].dx < 0)
+			if (scribble[i].x + scribble[i].dx > canvas.width || scribble[i].x + scribble[i].dx < 0)
 				scribble[i].dx = -scribble[i].dx;
 			if (scribble[i].y + scribble[i].dy > canvas.height || scribble[i].y + scribble[i].dy < 0)
 				scribble[i].dy = -scribble[i].dy;
 				scribble[i].x += scribble[i].dx;
-				scribble[i].y += scribble[i].dy;*/
+				scribble[i].y += scribble[i].dy;
 		}
 				 
       }
@@ -222,9 +229,28 @@
 		context.globalCompositeOperation = "source-over";
 		cleanUp("black");
 		
-
+		timerFour = setInterval('inSetGrade();', 100);
+		
 	  }
 	  
+	  	function inSetGrade() {
+		var myGradient = context.createLinearGradient(0, 0, canvas.width, canvas.height);
+		var sOne = 0;
+		var sTwo = 1;
+		myGradient.addColorStop(sOne, "blue");
+		myGradient.addColorStop(sTwo, "red");
+		context.fillStyle = myGradient;
+		context.fillRect(0, 0, canvas.width, canvas.height);
+		if (sOne < 1) 
+			sOne += 0.05;
+		else 
+			sOne = 0;
+		if (sTwo <0)
+			sTwo += 0.05;
+		else 
+			sTwo = 0;
+	}
+	
 	  function fillBackgroundColor() {
         context.fillStyle = 'black';
 		context.fillRect(0, 0, canvas.width, canvas.height);

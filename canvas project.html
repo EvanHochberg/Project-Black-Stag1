@@ -193,12 +193,19 @@
 	    context.font = '10pt Courier New';
 	    context.textAlign = 'center';
 	    context.fillStyle = 'red';
-	    context.fillText('press Q', 1100, 720);
+	    context.fillText('Click again', 1100, 720);
 		
 		context.fillStyle = "red";
         context.font = '50pt Courier New';
 	    context.textAlign = 'center';
         context.fillText("Your Welcome", 800,355);
+		
+		
+		context.fillStyle = "red";
+        context.font = '30pt Courier New';
+	    context.textAlign = 'center';
+        context.fillText("Message Brought to you by Black Stag Industries", 800,455);
+		context.fillText("Making the Future since 1963", 800, 555);
 		
 		for (var i=0; i<scribble.length; i++) {
 			if (scribble[i].shape == 'gin') {
@@ -225,32 +232,16 @@
 	  function handleClickTwo(x,y) {
 	  	clearInterval(timerTwo);
 		clearInterval(timerThree);
-
+        
+		alert("All you can do is click. Extiction is Inevitable!")
 		context.globalCompositeOperation = "source-over";
 		cleanUp("black");
 		
-		timerFour = setInterval('inSetGrade();', 100);
+		timerFour = setInterval('pulse();', 100);
 		
 	  }
 	  
-	  	function inSetGrade() {
-		var myGradient = context.createLinearGradient(0, 0, canvas.width, canvas.height);
-		var sOne = 0;
-		var sTwo = 1;
-		myGradient.addColorStop(sOne, "blue");
-		myGradient.addColorStop(sTwo, "red");
-		context.fillStyle = myGradient;
-		context.fillRect(0, 0, canvas.width, canvas.height);
-		if (sOne < 1) 
-			sOne += 0.05;
-		else 
-			sOne = 0;
-		if (sTwo <0)
-			sTwo += 0.05;
-		else 
-			sTwo = 0;
-	}
-	
+	   
 	  function fillBackgroundColor() {
         context.fillStyle = 'black';
 		context.fillRect(0, 0, canvas.width, canvas.height);

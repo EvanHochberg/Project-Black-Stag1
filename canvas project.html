@@ -20,7 +20,11 @@
 	  var timer = 0;
 	  var timerTwo = 0;
 	  var timerThree = 0;
+	  var timerFour = 0;
 	  var allScribbles = ['tree','twin','gin','onner','dun'];
+	  var row1;
+	  var row2;
+	  var timerFour = 0;
 	  function Scribbles(x, y, color) {
 		this.x = x;
 		this.y = y;
@@ -45,23 +49,41 @@
 	    };
 	    imageObj.src = 'blackStag/BlackStagClear2.png';
 		
-		timer = setInterval("resizeCan();", 100);
-		timerTwo = setInterval("newScribb();", 2000);
-		timerThree = setInterval("pulse();", 100);
+		timer = setInterval("pulse();", 100);
+		canvas.onclick = function(event) {
+		  handleClick(event.clientX, event.clientY);
+		};
+		
       }
+	  function cleanUp(color) {
+	    context.clearRect(0,0,canvas.width, canvas.height);
+		context.fillStyle = color;
+		context.fillRect(0,0, canvas.width, canvas.height);
+	  }
+	  
+	  function handleClick(x,y) {
+	    clearInterval(timer);
+		
+		context.globalCompositeOperation = "source-over";
+		cleanUp("black");
+		
+
+        
+		timerTwo = setInterval("resizeCan();", 100);
+		timerThree = setInterval("newScribb();", 2000);	
+	  }
 	  
 	  function pulse() {
 	    context.clearRect(0,0,canvas.width, canvas.height);
 		context.globalAlpha = ga;
-	  	context.drawImage(imageObj, canvas.width/2, 0);
+	  	context.drawImage(imageObj, 555, 0);
 		
 		printText();
-		//drawShape();
-		//drawNotherShape();
-		//anotherShape();
-		//drawNewShape();
-		//lastShape();
 		
+	    context.font = '10pt Courier New';
+	    context.textAlign = 'center';
+	    context.fillStyle = 'red';
+	    context.fillText('Click Once', 1100, 720);
 		ga += gd;
 		if (ga <= 0.1 || ga >= 1) {
 		  gd = -gd;
@@ -123,7 +145,6 @@
 	   context.stroke;
          		 
 	  }
-
 	  function drawNewShape(dun) {
         context.beginPath();
         context.moveTo(dun.x, dun.y);
@@ -138,7 +159,6 @@
 	    context.strokeStyle = dun.color;
 	    context.stroke;
       }
-
 	   function anotherShape(tree) {
 	     context.beginPath();
          context.moveTo(tree.x, tree.y);
@@ -154,24 +174,39 @@
 	 }
 	  
 	  function printText() {
-	    var myText = ['The End','is','Nigh','Survival','is','Futile','Humanity','is','Doomed'];
+	    var myText = ['The End is Nigh','Survival is Futile','Humanity is Doomed'];
 	    context.font = '30pt Courier New';
 	    context.textAlign = 'center';
 	    context.fillStyle = 'red';
-	    context.fillText(myText[0], 200, 50);
-	    context.fillText(myText[1], 200, 90);
-	    context.fillText(myText[2], 200, 130);
-	    context.fillText(myText[3], 400, 250);
-	    context.fillText(myText[4], 400, 290);
-	    context.fillText(myText[5], 400, 330);
-		context.fillText(myText[6], 700, 450);
-		context.fillText(myText[7], 700, 490);
-		context.fillText(myText[8], 700, 530);
+	    context.fillText(myText[0], 400, 50);
+	    context.fillText(myText[1], 1100, 50);
+	    context.fillText(myText[2], 775, 720);
 	}
       function resizeCan() {
         canvas.width = window.innerWidth-20;
         canvas.height = window.innerHeight-20;
 		fillBackgroundColor();
+		canvas.onclick = function(event) {
+		  handleClickTwo(event.clientX, event.clientY);
+		};
+		
+	    context.font = '10pt Courier New';
+	    context.textAlign = 'center';
+	    context.fillStyle = 'red';
+	    context.fillText('Click again', 1100, 720);
+		
+		context.fillStyle = "red";
+        context.font = '50pt Courier New';
+	    context.textAlign = 'center';
+        context.fillText("Your Welcome", 800,355);
+		
+		
+		context.fillStyle = "red";
+        context.font = '30pt Courier New';
+	    context.textAlign = 'center';
+        context.fillText("Message Brought to you by Black Stag Industries", 800,455);
+		context.fillText("Making the Future since 1963", 800, 555);
+		
 		for (var i=0; i<scribble.length; i++) {
 			if (scribble[i].shape == 'gin') {
 				lastShape(scribble[i]);
@@ -193,6 +228,20 @@
 		}
 				 
       }
+	  //get rid of this funtion?
+	  function handleClickTwo(x,y) {
+	  	clearInterval(timerTwo);
+		clearInterval(timerThree);
+        
+		alert("All you can do is click. Extiction is Inevitable!")
+		context.globalCompositeOperation = "source-over";
+		cleanUp("black");
+		
+		timerFour = setInterval('pulse();', 100);
+		
+	  }
+	  
+	   
 	  function fillBackgroundColor() {
         context.fillStyle = 'black';
 		context.fillRect(0, 0, canvas.width, canvas.height);
@@ -200,4 +249,4 @@
 	  window.onload = init;
     </script>
   </body>	  
-</html>
+</html

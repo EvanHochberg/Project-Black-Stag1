@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Black Stag</title>
+  </head>
+  <body>
+    <canvas id='canvas' width=500 height=500></canvas>
+    <style>
+       body {
+	         background: black;
+	   }
+    </style>
+    <script>
+	  var canvas;
+	  var context;
+	  var ga = 0.2;
+	  var gd = 0.1;
+	  var imageObj = new Image();
+	  var scribble = []
+	  var timer = 0;
+	  var timerTwo = 0;
+	  var timerThree = 0;
+	  var timerFour = 0;
+	  var allScribbles = ['tree','twin','gin','onner','dun'];
+	  var row1;
+	  var row2;
+	  var timerFour = 0;
+	  function Scribbles(x, y, color) {
+		this.x = x;
+		this.y = y;
+		this.dx = 2;
+		this.dy = 0;
+		this.color = color;
+		this.shape = allScribbles[Math.floor(Math.random()*allScribbles.length)];
+	  }
+      function init() {
+        canvas = document.getElementById('canvas');
+        context = canvas.getContext("2d");
+ 
+        window.addEventListener('resize', resizeCan, false);
+        window.addEventListener('orientationchange', resizeCan, false);
+        resizeCan();
+		canvas.onclick = function(event) {
+			handleClick(event.clientX, event.clientY);
+		};
+		
+		imageObj.onload = function() {
+	      context.drawImage(imageObj, canvas.width/2, 0);
+	    };
+	    imageObj.src = 'blackStag/BlackStagClear2.png';
+		
+		timer = setInterval("pulse();", 100);
+		canvas.onclick = function(event) {
+		  handleClick(event.clientX, event.clientY);
+		};
+		
+      }
+	  function cleanUp(color) {
+	    context.clearRect(0,0,canvas.width, canvas.height);
+		context.fillStyle = color;
+		context.fillRect(0,0, canvas.width, canvas.height);
+	  }
+	  
+	  function handleClick(x,y) {
+	    clearInterval(timer);
+		
+		context.globalCompositeOperation = "source-over";
+		cleanUp("black");
+		
+
+        
+		timerTwo = setInterval("resizeCan();", 100);
+		timerThree = setInterval("newScribb();", 2000);	
+	  }
+	  
+	  function pulse() {
+	    context.clearRect(0,0,canvas.width, canvas.height);
+		context.globalAlpha = ga;
+	  	context.drawImage(imageObj, 555, 0);
+		
+		printText();
+		
+	    context.font = '10pt Courier New';
+	    context.textAlign = 'center';
+	    context.fillStyle = 'red';
+	    context.fillText('Click Once', 1100, 720);
+		ga += gd;
+		if (ga <= 0.1 || ga >= 1) {
+		  gd = -gd;
+		}
+	   
+      }
+	  
+	  function newScribb() {
+		var x = Math.random() * canvas.width;
+		var y = Math.random() * canvas.height;
+		var gray = ["#cccccc", "#8c8c8c", "#e6e6e6", "#4d4d4d", "#f2f2f2", "#333333"];
+		var color = gray[Math.floor(Math.random()*gray.length)];
+        scribble.push(new Scribbles(x, y, color));
+		
+	  }
+	  
+	  function drawShape(onner) {
+        context.beginPath();
+        context.moveTo(onner.x, onner.y);
+        context.bezierCurveTo(onner.x-292, onner.y+9, onner.x-348, onner.y+79, onner.x+335, onner.y+66);
+        context.bezierCurveTo(onner.x+278, onner.y-7, onner.x-288, onner.y+43, onner.x+302, onner.y-92);
+        context.bezierCurveTo(onner.x+306, onner.y-106, onner.x+274, onner.y-74, onner.x+278, onner.y-69);
+        context.bezierCurveTo(onner.x+277, onner.y+84, onner.x+299, onner.y-47, onner.x+258, onner.y+47);
+        
+	    context.closePath();
+	    context.lineWidth = 2;
+	    context.strokeStyle = onner.color;
+	    context.stroke();
+	 }
+	 
+	  function lastShape(gin) {
+        context.beginPath();
+        context.moveTo(gin.x, gin.y);
+        context.bezierCurveTo(gin.x-388, gin.y+101, gin.x-419, gin.y+134, gin.x+426, gin.y+148);
+        context.bezierCurveTo(gin.x-424, gin.y-187, gin.x+426, gin.y-258, gin.x+422, gin.y-244);
+        context.bezierCurveTo(gin.x-418, gin.y-230, gin.x+445, gin.y-308, gin.x+437, gin.y+295);
+        context.bezierCurveTo(gin.x+429, gin.y-282, gin.x+431, gin.y-347, gin.x-425, gin.y+333);
+        context.bezierCurveTo(gin.x+419, gin.y-319, gin.x+428, gin.y-381, gin.x+398, gin.y-375);
+        context.stroke();
+	 
+	    context.closePath();
+	    context.lineWidth = 2;
+	    context.strokeStyle = gin.color;
+	    context.stroke;
+      }
+      	 
+	  function drawNotherShape(twin) {
+	   context.beginPath();
+       context.moveTo(twin.x,twin.y);
+       context.bezierCurveTo(twin.x+223, twin.y-125, twin.x+192, twin.y-237, twin.x-240, twin.y+213);
+       context.bezierCurveTo(twin.x+240, twin.y-213, twin.x+257, twin.y-177, twin.x-270, twin.y+232);
+       context.bezierCurveTo(twin.x+276, twin.y-258, twin.x+274, twin.y-198, twin.x-285, twin.y+204);
+       context.bezierCurveTo(twin.x+311, twin.y-218, twin.x+246, twin.y-99, twin.x-243, twin.y+166);
+       context.stroke();
+		 
+	   context.closePath();
+	   context.lineWidth = 2;
+	   context.strokeStyle = twin.color;
+	   context.stroke;
+         		 
+	  }
+	  function drawNewShape(dun) {
+        context.beginPath();
+        context.moveTo(dun.x, dun.y);
+        context.bezierCurveTo(dun.x+225, dun.y+368, dun.x+363, dun.y+440, dun.x+301, dun.y+412);
+        context.bezierCurveTo(dun.x+279, dun.y+402, dun.x+270, dun.y+421, dun.x+279, dun.y+433);
+        context.bezierCurveTo(dun.x+297, dun.y+458, dun.x+267, dun.y+442, dun.x+263, dun.y+456);
+        context.bezierCurveTo(dun.x+259, dun.y+470, dun.x+287, dun.y+397, dun.x+245, dun.y+396);
+        context.stroke();
+	 
+	    context.closePath();
+	    context.lineWidth = 2;
+	    context.strokeStyle = dun.color;
+	    context.stroke;
+      }
+	   function anotherShape(tree) {
+	     context.beginPath();
+         context.moveTo(tree.x, tree.y);
+         context.bezierCurveTo(tree.x+282, tree.y-286, tree.x+319, tree.y-264, tree.x+325, tree.y-275);
+         context.bezierCurveTo(tree.x-332, tree.y+288, tree.x-323, tree.y-318, tree.x-325, tree.y-320);
+         context.bezierCurveTo(tree.x-326, tree.y+321, tree.x-304, tree.y+277, tree.x-292, tree.y+292);
+         context.stroke();
+	   
+	     context.closePath();
+	     context.lineWidth = 2;
+	     context.strokeStyle = tree.color;
+	     context.stroke;
+	 }
+	  
+	  function printText() {
+	    var myText = ['The End is Nigh','Survival is Futile','Humanity is Doomed'];
+	    context.font = '30pt Courier New';
+	    context.textAlign = 'center';
+	    context.fillStyle = 'red';
+	    context.fillText(myText[0], 400, 50);
+	    context.fillText(myText[1], 1100, 50);
+	    context.fillText(myText[2], 775, 720);
+	}
+      function resizeCan() {
+        canvas.width = window.innerWidth-20;
+        canvas.height = window.innerHeight-20;
+		fillBackgroundColor();
+		canvas.onclick = function(event) {
+		  handleClickTwo(event.clientX, event.clientY);
+		};
+		
+	    context.font = '10pt Courier New';
+	    context.textAlign = 'center';
+	    context.fillStyle = 'red';
+	    context.fillText('Click again', 1100, 720);
+		
+		context.fillStyle = "red";
+        context.font = '50pt Courier New';
+	    context.textAlign = 'center';
+        context.fillText("Your Welcome", 800,355);
+		
+		
+		context.fillStyle = "red";
+        context.font = '30pt Courier New';
+	    context.textAlign = 'center';
+        context.fillText("Message Brought to you by Black Stag Industries", 800,455);
+		context.fillText("Making the Future since 1963", 800, 555);
+		
+		for (var i=0; i<scribble.length; i++) {
+			if (scribble[i].shape == 'gin') {
+				lastShape(scribble[i]);
+			} else if (scribble[i].shape == 'onner') {
+				drawShape(scribble[i]);
+			} else if (scribble[i].shape == 'twin') {
+				drawNotherShape(scribble[i]);
+			} else if (scribble[i].shape == 'tree') {
+				anotherShape(scribble[i]);
+			} else if (scribble[i].shape == 'dun') {
+				drawNewShape(scribble[i]);
+			}
+			if (scribble[i].x + scribble[i].dx > canvas.width || scribble[i].x + scribble[i].dx < 0)
+				scribble[i].dx = -scribble[i].dx;
+			if (scribble[i].y + scribble[i].dy > canvas.height || scribble[i].y + scribble[i].dy < 0)
+				scribble[i].dy = -scribble[i].dy;
+				scribble[i].x += scribble[i].dx;
+				scribble[i].y += scribble[i].dy;
+		}
+				 
+      }
+	  //get rid of this funtion?
+	  function handleClickTwo(x,y) {
+	  	clearInterval(timerTwo);
+		clearInterval(timerThree);
+        
+		alert("All you can do is click. Extiction is Inevitable!")
+		context.globalCompositeOperation = "source-over";
+		cleanUp("black");
+		
+		timerFour = setInterval('pulse();', 100);
+		
+	  }
+	  
+	   
+	  function fillBackgroundColor() {
+        context.fillStyle = 'black';
+		context.fillRect(0, 0, canvas.width, canvas.height);
+	}
+	  window.onload = init;
+    </script>
+  </body>	  
+</html

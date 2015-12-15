@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Black Stag</title>
+  </head>
+  <body>
+    <canvas id='canvas' width=500 height=500></canvas>
+    <style>
+       body {
+	         background: black;
+	   }
+    </style>
+    <script>
+	  var canvas;
+	  var context;
+      var ga = 0.2;
+	  var gd = 0.1;
+	  var imageObj = new Image();
+	  var timer = 0;
+	  //var timerThree = 0;
+	  var myText = ['The End is Nigh','Survival is Futile','Humanity is Doomed','Your Welcome'];
+	  
+      function init() {
+        canvas = document.getElementById('canvas');
+        context = canvas.getContext("2d");
+
+        window.addEventListener('resize', resizeCan, false);
+        window.addEventListener('orientationchange', resizeCan, false);
+        resizeCan();
+
+		imageObj.onload = function() {
+	      context.drawImage(imageObj, canvas.width/2, 0);
+	    };
+	    imageObj.src = 'blackStag/BlackStagClear2.png';
+
+		//timer = setInterval("resizeCan();", 100);
+		timer = setInterval("pulse();", 100);
+      }
+
+	  function pulse() {
+	    context.clearRect(0,0,canvas.width, canvas.height);
+		context.globalAlpha = ga;
+	  	context.drawImage(imageObj, 555, 0);
+		
+
+		
+		printText();
+		//drawShape();
+		//drawNotherShape();
+		//anotherShape();
+		//drawNewShape();
+		//lastShape();
+		
+		ga += gd;
+		if (ga <= 0.1 || ga >= 1) {
+		  gd = -gd;
+		}  
+      }
+
+	  function printText() {
+	    context.font = '30pt Courier New';
+	    context.textAlign = 'center';
+	    context.fillStyle = 'red';
+	    context.fillText(myText[0], 400, 50);
+	    context.fillText(myText[1], 1100, 50);
+	    context.fillText(myText[2], 775, 720);
+	    context.fillText(myText[3], 200, 170);
+	  }
+
+      function resizeCan() {
+        canvas.width = window.innerWidth-20;
+        canvas.height = window.innerHeight-20;
+		fillBackgroundColor();
+	  }
+
+	  function fillBackgroundColor() {
+        context.fillStyle = 'black';
+		context.fillRect(0, 0, canvas.width, canvas.height);
+	}
+	  window.onload = init;	
+    </script>
+  </body>	  
+</html>

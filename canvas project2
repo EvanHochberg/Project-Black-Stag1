@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  </head>
+  <body>
+    <canvas id = "myCanvas" width = "1010" height = "1052"></canvas>
+	<style>
+	  body {
+	  background: black;
+	  }
+	</style>
+    <script>
+	  var canvas = document.getElementById('myCanvas');
+	  var context = canvas.getContext('2d');
+	  var imageObj = new Image();
+	  
+	  imageObj.onload = function() {
+	    context.drawImage(imageObj, 69, 50);
+	  };
+	  imageObj.src = 'blackStag/blackstag.png';
+    </script>
+  </body>
+</html>
